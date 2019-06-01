@@ -1,4 +1,4 @@
-﻿##############################################################
+##############################################################
 # Fluro Install Script                                       #
 ##############################################################
 # Windows 10 Custom Installation Script, Using Powershell    #
@@ -216,12 +216,12 @@ choco install Microsoft-Windows-Subsystem-Linux -source windowsfeatures
 
 #--- Tools ---
 choco install nuget.commandline --pre
-choco install docker-for-windows -dvy
+choco install docker-for-windows -y
 Install-Module -Name posh-docker -Force
-choco install powershell-core -dvy
-choco install git -params '"/GitAndUnixToolsOnPath /WindowsTerminal"' -dvy
-choco install hyper -dvy
-choco install mRemoteNG -dvy
+choco install powershell-core -y
+choco install git -params '"/GitAndUnixToolsOnPath /WindowsTerminal"' -y
+choco install hyper -y
+choco install mRemoteNG -y
 
 #--- Removing Shit ---
 
@@ -239,81 +239,155 @@ Get-AppxPackage king.com.CandyCrush* | Remove-AppxPackage
 
 # Install Custom Software
 Write-Host "[ * ] Installing Software"
-choco install adobereader -dvy
-choco install googlechrome -dvy
-choco install jre8 -dvy
-choco install firefox -dvy
-choco install notepadplusplus.install -dvy
-choco install 7zip.install -dvy
-choco install vlc -dvy
-choco install winrar -dvy
-choco install git.install -dvy
-choco install putty.install -dvy
-choco install javaruntime -dvy
-choco install skype -dvy
-choco install ccleaner -dvy
-choco install filezilla -dvy
-choco install malwarebytes -dvy
-choco install atom -dvy
-choco install gimp -dvy
-choco install itunes -dvy
-choco install winscp.install -dvy
-choco install dropbox -dvy
-choco install virtualbox -dvy
-choco install wireshark -dvy
-choco install sublimetext3 -dvy
-choco install audacity -dvy
-choco install spotify -dvy
-choco install steam -dvy
-choco install googledrive -dvy
-choco install dolphin -dvy
-choco install mysql.workbench -dvy
-choco install qbittorrent -dvy
-choco install brackets -dvy
-choco install rufus -dvy
-choco install poweriso -dvy
-choco install cpu-z.install -dvy
-choco install nmap -dvy
-choco install greenshot -dvy
-choco install androidstudio -dvy
-choco install adwcleaner -dvy
-choco install arduino -dvy
-choco install yumi -dvy
-choco install handbrake -dvy
-choco install discord -dvy
-choco install kodi -dvy
-choco install f.lux.install -dvy
-choco install obs-studio -dvy
-choco install gitkraken -dvy
-choco install visualstudiocode -dvy
-choco install git -dvy
-choco install nodejs -dvy
-choco install hyper -dvy
-choco install vmwareworkstation -dvy
-choco install windirstat -dvy
-choco install visualstudio2019professional -dvy
-choco install intellijidea-community -dvy
-choco install resharper-platform -dvy
-choco install resharper -dvy
-choco install dotpeek -dvy
-choco install intellijidea-ultimate -dvy
-choco install dotcover -dvy
-choco install dottrace -dvy
-choco install webstorm -dvy
-choco install phpstorm -dvy
-choco install datagrip -dvy
-choco install dotmemory -dvy
-choco install jetbrainstoolbox -dvy
-choco install teamcityaddin -dvy
-choco install goland -dvy
-choco install pycharm -dvy
-choco install rubymine -dvy
-choco install goland -dvy
-choco install adobe-creative-cloud -dvy
-choco install office365business -dvy
+choco install adobereader -y
+choco install googlechrome -y
+choco install jre8 -y
+choco install firefox -y
+choco install notepadplusplus.install -y
+choco install 7zip.install -y
+choco install vlc -y
+choco install winrar -y
+choco install git.install -y
+choco install putty.install -y
+choco install javaruntime -y
+choco install skype -y
+choco install ccleaner -y
+choco install filezilla -y
+choco install malwarebytes -y
+choco install atom -y
+choco install gimp -y
+choco install itunes -y
+choco install winscp.install -y
+choco install dropbox -y
+choco install virtualbox -y
+choco install wireshark -y
+choco install sublimetext3 -y
+choco install audacity -y
+choco install spotify -y
+choco install steam -y
+choco install googledrive -y
+choco install dolphin -y
+choco install mysql.workbench -y
+choco install qbittorrent -y
+choco install brackets -y
+choco install rufus -y
+choco install poweriso -y
+choco install cpu-z.install -y
+choco install nmap -y
+choco install greenshot -y
+choco install androidstudio -y
+choco install adwcleaner -y
+choco install arduino -y
+choco install yumi -y
+choco install handbrake -y
+choco install discord -y
+choco install kodi -y
+choco install f.lux.install -y
+choco install obs-studio -y
+choco install gitkraken -y
+choco install visualstudiocode -y
+choco install git -y
+choco install nodejs -y
+choco install hyper -y
+choco install vmwareworkstation -y
+choco install windirstat -y
+choco install visualstudio2019professional -y
+choco install resharper-platform -y
+choco install resharper -y
+choco install dotpeek -y
+choco install intellijidea-ultimate -y
+choco install dotcover -y
+choco install dottrace -y
+choco install webstorm -y
+choco install phpstorm -y
+choco install datagrip -y
+choco install dotmemory -y
+choco install jetbrainstoolbox -y
+choco install teamcityaddin -y
+choco install goland -y
+choco install pycharm -y
+choco install rubymine -y
+choco install goland -y
+choco install adobe-creative-cloud -y
+choco install office365business -y
+choco install win32diskimager.install -y
+
+# AUS Time Settings Change Here For Your Location
+Set-TimeZone -Name "AUS Eastern Standard Time"
 
 # Pinning Things
 Install-ChocolateyPinnedTaskBarItem "$env:programfiles\Google\Chrome\Application\chrome.exe"
+
+function PinToTaskbar {
+  # https://stackoverflow.com/questions/31720595/pin-program-to-taskbar-using-ps-in-windows-10
+  param (
+    [parameter(Mandatory=$True, HelpMessage="Target item to pin")]
+    [ValidateNotNullOrEmpty()]
+    [string] $Target
+  )
+  if (-Not (Test-Path $Target)) {
+    Write-Warning "$Target does not exist"
+    throw [System.IO.FileNotFoundException] "$Target does not exist"
+  }
+
+  $KeyPath1  = "HKCU:\SOFTWARE\Classes"
+  $KeyPath2  = "*"
+  $KeyPath3  = "shell"
+  $KeyPath4  = "{:}"
+  $ValueName = "ExplorerCommandHandler"
+  $ValueData =
+  (Get-ItemProperty `
+        ("HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\" + `
+            "CommandStore\shell\Windows.taskbarpin")
+  ).ExplorerCommandHandler
+
+  $Key2 = (Get-Item $KeyPath1).OpenSubKey($KeyPath2, $true)
+  $Key3 = $Key2.CreateSubKey($KeyPath3, $true)
+  $Key4 = $Key3.CreateSubKey($KeyPath4, $true)
+  $Key4.SetValue($ValueName, $ValueData)
+
+  $Shell = New-Object -ComObject "Shell.Application"
+  $Folder = $Shell.Namespace((Get-Item $Target).DirectoryName)
+  $Item = $Folder.ParseName((Get-Item $Target).Name)
+  $Item.InvokeVerb("{:}")
+
+  $Key3.DeleteSubKey($KeyPath4)
+  if ($Key3.SubKeyCount -eq 0 -and $Key3.ValueCount -eq 0) {
+    $Key2.DeleteSubKey($KeyPath3)
+  }
+}
+
+#### Pin Items to Taskbar ####
+Write-Host "[-] Pinning items to Taskbar" -ForegroundColor Green
+# Explorer
+$target_file = Join-Path ${Env:WinDir} "explorer.exe"
+try {
+  PinToTaskbar $target_file
+} catch {
+  Write-Host "Could not pin $target_file to the tasbar"
+}
+# CMD prompt
+$target_file = Join-Path ${Env:WinDir} "system32\cmd.exe"
+$target_dir = ${Env:UserProfile}
+$target_args = '/K "cd ' + ${Env:UserProfile} + '"'
+$shortcut = Join-Path ${Env:UserProfile} "temp\CMD.lnk"
+Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -Arguments $target_args -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
+try {
+  PinToTaskbar $shortcut
+} catch {
+  Write-Host "Could not pin $target_file to the tasbar"
+}
+# Powershell
+$target_file = Join-Path (Join-Path ${Env:WinDir} "system32\WindowsPowerShell\v1.0") "powershell.exe"
+$target_dir = ${Env:UserProfile}
+$target_args = '-NoExit -Command "cd ' + "${Env:UserProfile}" + '"'
+$shortcut = Join-Path ${Env:UserProfile} "temp\PowerShell.lnk"
+Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -Arguments $target_args -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
+try {
+  PinToTaskbar $shortcut
+} catch {
+  Write-Host "Could not pin $target_file to the tasbar"
+}
 
 #--- Restore Temporary Settings ---
 Enable-UAC
@@ -322,8 +396,8 @@ Install-WindowsUpdate -acceptEula
 
 #--- Rename the Computer ---
 # Requires restart, or add the -Restart flag
-$computername = "Fluro Windows Build"
+$computername = "Fluro-Build"
 if ($env:computername -ne $computername) {
 Rename-Computer -NewName $computername -Restart
-}
 if (Test-PendingReboot) { Invoke-Reboot }
+}
