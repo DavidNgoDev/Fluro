@@ -13,7 +13,7 @@ Fluro is a post windows installation script that comes equiped with common tools
 6) Run Fluro by typing ./install.ps1
 
 # Warning
-I am not responsible for anything that happens to your computer if you use this script. Install at your own risk.
+I am not responsible for anything that happens to your computer if you use this script. Install at your own risk. Once you run the script you will also agree to all terms of agreement for all application as they are silent installs.
 
 # Packages
 * adobereader
