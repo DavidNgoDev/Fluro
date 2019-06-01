@@ -5,9 +5,13 @@ Custom Windows Installation Image For New Windows Installations, Using Powershel
 Fluro is a post windows installation script that comes equiped with common tools installed for develoeprs.
 
 # How do i install it?
-1) Run PowerShell as administrator
-2) Type Set-ExecutionPolicy Unrestricted
-3) Run Fluro by typing ./install.ps1
+1) Download Fluro
+2) Extract it to where you want
+3) Run PowerShell as administrator
+4) Type Set-ExecutionPolicy Unrestricted
+5) CD into Fluro Dir
+6) Run Fluro by typing ./install.ps1
+
 # Warning
 I am not responsible for anything that happens to your computer if you use this script. Install at your own risk.
 
