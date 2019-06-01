@@ -324,4 +324,5 @@ Install-WindowsUpdate -acceptEula
 $computername = "Fluro Windows Build"
 if ($env:computername -ne $computername) {
 Rename-Computer -NewName $computername -Restart
+}
 if (Test-PendingReboot) { Invoke-Reboot }
