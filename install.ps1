@@ -9,6 +9,9 @@
 # 2) Type Set-ExecutionPolicy Unrestricted  # 
 # 3) Run Fluro by typing ./install.ps1      #
 #############################################
+
+# Fireeye boxstarter Script
+
 param (
   [string]$password = "",
   [bool]$nochecks = $false
