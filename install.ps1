@@ -218,7 +218,7 @@ choco install Containers -source windowsFeatures
 choco install Microsoft-Windows-Subsystem-Linux -source windowsfeatures
 
 #--- Tools ---
-choco install nuget.commandline --pre
+choco install nuget.commandline --pre -y
 choco install docker-for-windows -y
 Install-Module -Name posh-docker -Force
 choco install powershell-core -y
